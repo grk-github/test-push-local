@@ -1,0 +1,19 @@
+---
+- name: git clone test
+  hosts: localhost
+
+  vars:
+    repo_url: https://github.com/grk-github/python.git
+    dest_dir: /root/git-clone-test-dir
+
+  tasks:
+    - name: ensure directory exists
+      file:
+        path: "{{ dest_dir }}"
+        state: directory
+    - name: clone git directory
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_dir }}"
+        clone: yes
+        update: yes
